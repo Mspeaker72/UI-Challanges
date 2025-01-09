@@ -18,10 +18,19 @@ const H1 = styled.h1`
 font-family: Roboto;
 margin:10px;
 `
+const H2 = styled.h2`
+font-family: Roboto;
+margin:10px;
+`
+const H3 = styled.h3`
+font-family: Roboto;
+margin:10px;
+`
+
 const TContainer = styled.div`
 display: flex;
 flex-direction: row;
-margin: 0 35px;
+margin: 0 10px;
 justify-content: start;
 `
 const HContainer = styled.div`
@@ -30,11 +39,21 @@ flex-direction: row;
 margin: 10px;
 justify-content: center;
 `
+
+const HFillContainer = styled.div`
+display: flex;
+flex-direction: row;
+margin: 10px;
+justify-content: start;
+width:100%;
+
+`
 const Vcontainer = styled.div`
 display: flex;
 flex-direction: column;
 margin: 10px;
 justify-content: center;
+width:100%;
 `
 
 interface TextProps {
@@ -51,8 +70,6 @@ margin: 0;
 
 const InputBox = styled.input`
 width: 100%;
-height: 25px;
-
 
 &:focus {
 outline-color: green;
@@ -62,14 +79,30 @@ border: none;
 interface UserInputProps {
   label:string,
   required?:boolean,
+  type?:string,
+  placeholder?:string,
 }
-const UserInput = ({label,required}:UserInputProps) => {
+const UserInput = ({label,required,type,placeholder}:UserInputProps) => {
   return (
     <Vcontainer>
       <Text>{label}<Text color="red">{required? '*':''}</Text></Text>
-      <InputBox/>
+      <InputBox
+      type={type? type :'text'}
+      placeholder={placeholder? placeholder : ''}
+      />
     </Vcontainer>
 
+  );
+}
+
+const SelectionInput = () => {
+  return (
+    <HFillContainer>
+  
+      <input style={{margin:'0px 5px'}} type="radio"></input>
+      <Text>General</Text>
+
+    </HFillContainer>
   );
 }
 
@@ -91,14 +124,44 @@ export const ContactForm = () => {
       <UserInput
       label="Name"
       required
+      placeholder={ 'John' }
       />
       <UserInput
       label="Surname"
       required
+      placeholder={ 'Doe' }
       />
     </HContainer>
-    
 
+    <HContainer>
+
+    <UserInput
+      label="Email"
+      required
+      type="email"
+      placeholder={ 'johndoe@example.com' }
+      />
+    </HContainer>
+
+    <TContainer>
+    
+    <H3>
+      Query Type
+    </H3>
+    
+    </TContainer>
+
+
+    <HContainer>
+      <SelectionInput>
+
+      </SelectionInput>
+
+      <SelectionInput>
+        
+      </SelectionInput>
+    </HContainer>
+  
   </FormFrame>
   );
 }
