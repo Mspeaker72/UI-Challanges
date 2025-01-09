@@ -7,7 +7,6 @@ height: 550px;
 width: 450px;
 display: flex;
 margin-left: 20px;
-gap: 5px;
 background: white;
 box-shadow: black 0px 0px 5px;
 border-radius: 10px;
@@ -106,6 +105,17 @@ const SelectionInput = () => {
   );
 }
 
+const CheckBoxInput = () => {
+  return (
+    <HFillContainer>
+  
+      <input style={{margin:'0px 5px'}} type="checkbox"></input>
+      <Text>I consent to being contacted by team</Text>
+
+    </HFillContainer>
+  );
+}
+
 export const ContactForm = () => {
 
   return(
@@ -160,6 +170,34 @@ export const ContactForm = () => {
       <SelectionInput>
         
       </SelectionInput>
+    </HContainer>
+
+    <TContainer>
+    
+    <H3>
+      Message
+    </H3>
+    
+    </TContainer>
+
+    <HContainer>
+      <textarea
+      style={{
+        width:'100%',
+        resize:'none',
+        height:'10vh'
+      }}
+      >
+
+      </textarea>
+    </HContainer>
+
+    <CheckBoxInput/>
+
+    <HContainer>
+      <button style={{width:'100%'}}>
+        Submit
+      </button>
     </HContainer>
   
   </FormFrame>
