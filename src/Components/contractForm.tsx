@@ -6,7 +6,7 @@ const FormFrame = styled.div`
 height: 550px;
 width: 450px;
 display: flex;
-margin-left: 20px;
+justify-content: center;
 background: white;
 box-shadow: black 0px 0px 5px;
 border-radius: 10px;
@@ -35,7 +35,7 @@ justify-content: start;
 const HContainer = styled.div`
 display: flex;
 flex-direction: row;
-margin: 10px;
+margin: 5px 10px;
 justify-content: center;
 `
 
@@ -94,12 +94,17 @@ const UserInput = ({label,required,type,placeholder}:UserInputProps) => {
   );
 }
 
-const SelectionInput = () => {
+const SelectedInput = styled.input`
+margin:'0px 5px';
+`
+
+const SelectionInput = ({...props}:UserInputProps) => {
   return (
     <HFillContainer>
-  
-      <input style={{margin:'0px 5px'}} type="radio"></input>
-      <Text>General</Text>
+      <SelectedInput
+      type={props.type}
+      />
+      <Text>{props.label}</Text>
 
     </HFillContainer>
   );
@@ -163,13 +168,16 @@ export const ContactForm = () => {
 
 
     <HContainer>
-      <SelectionInput>
+      <SelectionInput
+      label="general"
+      type="radio"
+      />
 
-      </SelectionInput>
-
-      <SelectionInput>
-        
-      </SelectionInput>
+      <SelectionInput
+      label="Account"
+      type="radio"
+      />
+  
     </HContainer>
 
     <TContainer>
@@ -195,7 +203,7 @@ export const ContactForm = () => {
     <CheckBoxInput/>
 
     <HContainer>
-      <button style={{width:'100%'}}>
+      <button style={{width:'100%',height:'40px'}}>
         Submit
       </button>
     </HContainer>
