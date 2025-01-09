@@ -70,6 +70,8 @@ margin: 0;
 const InputBox = styled.input`
 width: 100%;
 
+margin: 2px 0;
+
 &:focus {
 outline-color: green;
 border: none;
@@ -81,6 +83,18 @@ interface UserInputProps {
   type?:string,
   placeholder?:string,
 }
+
+const Message = styled.textarea`
+  width: 100%;
+  resize: none;
+  height: 15vh
+`
+
+const SumbitButton = styled.button`
+width:100%;
+height: 40px;
+`
+
 const UserInput = ({label,required,type,placeholder}:UserInputProps) => {
   return (
     <Vcontainer>
@@ -105,17 +119,6 @@ const SelectionInput = ({...props}:UserInputProps) => {
       type={props.type}
       />
       <Text>{props.label}</Text>
-
-    </HFillContainer>
-  );
-}
-
-const CheckBoxInput = () => {
-  return (
-    <HFillContainer>
-  
-      <input style={{margin:'0px 5px'}} type="checkbox"></input>
-      <Text>I consent to being contacted by team</Text>
 
     </HFillContainer>
   );
@@ -189,23 +192,18 @@ export const ContactForm = () => {
     </TContainer>
 
     <HContainer>
-      <textarea
-      style={{
-        width:'100%',
-        resize:'none',
-        height:'10vh'
-      }}
-      >
-
-      </textarea>
+      <Message/>
     </HContainer>
 
-    <CheckBoxInput/>
+    <SelectionInput
+    label="I consent to being contacted by team"
+    type="checkbox"
+    />
 
     <HContainer>
-      <button style={{width:'100%',height:'40px'}}>
+      <SumbitButton>
         Submit
-      </button>
+      </SumbitButton>
     </HContainer>
   
   </FormFrame>
