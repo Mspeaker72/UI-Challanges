@@ -1,9 +1,15 @@
+import { 
+  useState,
+  useEffect,
+} from "react";
+
 import 
   styled 
 from "styled-components";
 
 import { 
-  HContainer 
+  HContainer, 
+  Vcontainer
 } from "../Components/contractForm";
 
 import { 
@@ -14,7 +20,22 @@ import {
   Text 
 } from "../Components/contractForm";
 
+const SubmitButton = styled.button`
+color:white;
+background:#0A6A47;
+width:100%;
+height: 40px;
+margin: 40px 20px;
+`
 
+
+const HVcontainer = styled.div`
+display: flex;
+flex-direction: column;;
+justify-content:start;
+background-color:transparent;
+width:60%;
+`
 
 interface DLSpeedCalcFrameProps {
 
@@ -24,19 +45,84 @@ interface DLSpeedCalcFrameProps {
 }
 
 const SpeedUpInput = styled.input`
-margin: 0 10px;
+margin: 2px 10px;
 ` 
 
-const UserInput = () => {
+
+const SpeedUpUserInput = ({...props}) => {
   
   return (
-    <HContainer
+    <HVcontainer
     >
-    <Text>1-minute</Text>
+    <Text
+    margin="0 10px"
+    >1-minute</Text>
+    <SpeedUpInput
+    type="number"
+    onChange={props.onChange && props.onChange()}
+    />
+
+    <Text
+    margin="0 10px"
+    >5-minutes</Text>
     <SpeedUpInput
     type="number"
     />
-    </HContainer>
+
+    <Text
+    margin="0 10px"
+    >15-minutes</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >30-minutes</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >60-minutes</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >4-hours</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >8-hours</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >15-hours</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+    <Text
+    margin="0 10px"
+    >1-day</Text>
+    <SpeedUpInput
+    type="number"
+    />
+
+      <SubmitButton>
+        Submit
+      </SubmitButton>
+  
+    </HVcontainer>
   );
 }
 
@@ -54,57 +140,118 @@ flex-direction: column;
 `
 
 export const DLSpeedCalc = () => {
+  const [totalMinutes, setTotalMinutes] = useState(0);
+  const [speedUps, setSpeedUps] = useState({
+    totalMinuteSpeedUps: 0,
+    totalFiveMinuteSpeedUps: 0,
+    totalFifteenMinuteSpeedUps: 0,
+    totalThirtyMinuteSpeedUps: 0,
+    totalSixtyMinuteSpeedUps: 0,
+    totalFourHourSpeedUps: 0,
+    totalEightHourSpeedUps: 0,
+    totalFifteenHourSpeedUps: 0,
+    totalOneDaySpeedUps: 0,
+  });
 
-  return(
+  useEffect(() => {
+    const total = speedUps.totalMinuteSpeedUps +
+      speedUps.totalFiveMinuteSpeedUps * 5 +
+      speedUps.totalFifteenMinuteSpeedUps * 15 +
+      speedUps.totalThirtyMinuteSpeedUps * 30 +
+      speedUps.totalSixtyMinuteSpeedUps * 60 +
+      speedUps.totalFourHourSpeedUps * 240 +
+      speedUps.totalEightHourSpeedUps * 480 +
+      speedUps.totalFifteenHourSpeedUps * 900 +
+      speedUps.totalOneDaySpeedUps * 1440;
+    setTotalMinutes(total);
+  }, [speedUps]);
+
+  const updateSpeedUps = (type: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    // take note
+    const amount = parseInt(e.target.value);
+
+    if (amount > 100000) {
+      e.target.value = '99999';
+      setSpeedUps(prev => ({ ...prev, [type]: 99999 }));
+    } else if (amount && amount >= 0) {
+      setSpeedUps(prev => ({ ...prev, [type]: amount }));
+    } else if (amount < 0) {
+      e.target.value = '0';
+      setSpeedUps(prev => ({ ...prev, [type]: 0 }));
+    } else {
+      setSpeedUps(prev => ({ ...prev, [type]: 0 }));
+    }
+  };
+
+  return (
     <>
-    <HContainer>
+      <HContainer>
+        <FormFrame backgroundColor="white" borderRadius="10px">
+          <H1 color="#4a4a4a">Speed-up calculator</H1>
+          <HContainer justifyContent="flex-start">
+            <HVcontainer>
+              <Text margin="0 10px">1-minute</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalMinuteSpeedUps')} />
 
-      <FormFrame
-      backgroundColor="white"
-      borderRadius="10px"
-      >
-        <H1
-        color="#4a4a4a"
-        >
-          Speed-up calculator
-        </H1>
-        <HContainer
-        justifyContent="flex-start"
-        >
-          <UserInput/>
-        </HContainer>
-        
+              <Text margin="0 10px">5-minutes</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFiveMinuteSpeedUps')} />
 
-      </FormFrame>
+              <Text margin="0 10px">15-minutes</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFifteenMinuteSpeedUps')} />
 
-      <FormFrame
-      borderRadius="0 80px 20px 80px"
-      margin="0 -100px"
-      >
-        <H1
-        color="white"
-        >
-          Results
-        </H1>
+              <Text margin="0 10px">30-minutes</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalThirtyMinuteSpeedUps')} />
 
-        <HContainer
-        color="#2C2C2C"
-        height="30vh"
-        borderRadius="10px"
-        >
+              <Text margin="0 10px">60-minutes</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalSixtyMinuteSpeedUps')} />
 
-          <Text
-          color="white"
-          size={'16px'}
-          >
-            Info will be updated later
-          </Text>
+              <Text margin="0 10px">4-hours</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFourHourSpeedUps')} />
 
-        </HContainer>
+              <Text margin="0 10px">8-hours</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalEightHourSpeedUps')} />
 
-      </FormFrame>
+              <Text margin="0 10px">15-hours</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFifteenHourSpeedUps')} />
 
-    </HContainer>
+              <Text margin="0 10px">1-day</Text>
+              <SpeedUpInput type="number" onChange={updateSpeedUps('totalOneDaySpeedUps')} />
+
+              <SubmitButton>Submit</SubmitButton>
+            </HVcontainer>
+          </HContainer>
+        </FormFrame>
+
+        <FormFrame borderRadius="0 80px 20px 80px" margin="0 -100px">
+          <H1 color="white">Results</H1>
+
+          <HContainer color="#2C2C2C" height="30vh" borderRadius="10px">
+            <Vcontainer>
+              <Text
+              color="white"
+              >
+                Total Minutes : {totalMinutes}
+                
+              </Text>
+
+              <Text
+              color="white"
+              >
+                Minutes in Days: {parseFloat((totalMinutes/1440)).toFixed(2)}
+                
+              </Text>
+
+              <Text
+              color="white"
+              >
+                Potential Day one top commander points: {totalMinutes*200}
+                
+              </Text>
+
+            </Vcontainer>
+          </HContainer>
+        </FormFrame>
+      </HContainer>
     </>
   );
-}
+};

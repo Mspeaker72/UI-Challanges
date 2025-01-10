@@ -66,7 +66,7 @@ justify-content: start;
 width:100%;
 
 `
-const Vcontainer = styled.div`
+export const Vcontainer = styled.div`
 display: flex;
 flex-direction: column;
 margin: 0 10px;
@@ -77,13 +77,14 @@ width:100%;
 interface TextProps {
   color?: string;
   size?: string;
+  margin?:string;
 }
 
 export const Text = styled.text<TextProps>`
 color:${props => props.color || 'black'};
 font-size:${props => props.size || '14px'};
 font-family: Robto;
-margin: 0;
+margin: ${props => props.margin || '0'};
 `
 
 const InputBox = styled.input`
@@ -109,7 +110,7 @@ const Message = styled.textarea`
   height: 15vh
 `
 
-const SumbitButton = styled.button`
+export const SumbitButton = styled.button`
 color:white;
 background:#0A6A47;
 width:100%;
