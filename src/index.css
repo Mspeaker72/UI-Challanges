@@ -3,6 +3,7 @@ body {
   display: flex;
   place-items: center;
   justify-content: center;
+  background-color: #e3fff5 ;
   min-width: 320px;
   min-height: 100vh;
 }

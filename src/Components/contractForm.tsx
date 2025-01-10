@@ -6,6 +6,7 @@ const FormFrame = styled.div`
 height: 550px;
 width: 450px;
 display: flex;
+margin-right: 20px;
 justify-content: center;
 background: white;
 box-shadow: black 0px 0px 5px;
@@ -50,7 +51,7 @@ width:100%;
 const Vcontainer = styled.div`
 display: flex;
 flex-direction: column;
-margin: 10px;
+margin: 0 10px;
 justify-content: center;
 width:100%;
 `
@@ -69,8 +70,8 @@ margin: 0;
 
 const InputBox = styled.input`
 width: 100%;
+height: 30px;
 
-margin: 2px 0;
 
 &:focus {
 outline-color: green;
@@ -91,6 +92,8 @@ const Message = styled.textarea`
 `
 
 const SumbitButton = styled.button`
+color:white;
+background:#0A6A47;
 width:100%;
 height: 40px;
 `
