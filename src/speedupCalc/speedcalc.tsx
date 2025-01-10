@@ -48,84 +48,6 @@ const SpeedUpInput = styled.input`
 margin: 2px 10px;
 ` 
 
-
-const SpeedUpUserInput = ({...props}) => {
-  
-  return (
-    <HVcontainer
-    >
-    <Text
-    margin="0 10px"
-    >1-minute</Text>
-    <SpeedUpInput
-    type="number"
-    onChange={props.onChange && props.onChange()}
-    />
-
-    <Text
-    margin="0 10px"
-    >5-minutes</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >15-minutes</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >30-minutes</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >60-minutes</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >4-hours</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >8-hours</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >15-hours</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-    <Text
-    margin="0 10px"
-    >1-day</Text>
-    <SpeedUpInput
-    type="number"
-    />
-
-      <SubmitButton>
-        Submit
-      </SubmitButton>
-  
-    </HVcontainer>
-  );
-}
-
 const FormFrame = styled.div<DLSpeedCalcFrameProps>`
 height: 550px;
 width: 450px;
@@ -153,7 +75,7 @@ export const DLSpeedCalc = () => {
     totalOneDaySpeedUps: 0,
   });
 
-  useEffect(() => {
+  const Submit = () => {
     const total = speedUps.totalMinuteSpeedUps +
       speedUps.totalFiveMinuteSpeedUps * 5 +
       speedUps.totalFifteenMinuteSpeedUps * 15 +
@@ -164,7 +86,7 @@ export const DLSpeedCalc = () => {
       speedUps.totalFifteenHourSpeedUps * 900 +
       speedUps.totalOneDaySpeedUps * 1440;
     setTotalMinutes(total);
-  }, [speedUps]);
+  }
 
   const updateSpeedUps = (type: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     // take note
@@ -217,7 +139,11 @@ export const DLSpeedCalc = () => {
               <Text margin="0 10px">1-day</Text>
               <SpeedUpInput type="number" onChange={updateSpeedUps('totalOneDaySpeedUps')} />
 
-              <SubmitButton>Submit</SubmitButton>
+              <SubmitButton
+              onClick={Submit}
+              >
+                Submit
+              </SubmitButton>
             </HVcontainer>
           </HContainer>
         </FormFrame>
