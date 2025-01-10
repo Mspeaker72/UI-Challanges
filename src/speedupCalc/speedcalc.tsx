@@ -1,6 +1,5 @@
 import { 
   useState,
-  useEffect,
 } from "react";
 
 import 
@@ -25,6 +24,8 @@ color:white;
 background:#0A6A47;
 width:100%;
 height: 40px;
+border-radius: 20px;
+
 margin: 40px 20px;
 `
 
@@ -108,36 +109,97 @@ export const DLSpeedCalc = () => {
   return (
     <>
       <HContainer>
-        <FormFrame backgroundColor="white" borderRadius="10px">
-          <H1 color="#4a4a4a">Speed-up calculator</H1>
+        
+        <FormFrame 
+        backgroundColor="white" 
+        borderRadius="10px">
+          
+          <H1 color="#4a4a4a">
+            Speed-up calculator
+          </H1>
+          
           <HContainer justifyContent="flex-start">
+            
             <HVcontainer>
-              <Text margin="0 10px">1-minute</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalMinuteSpeedUps')} />
+              <Text margin="0 10px">
+                1-minute
+              </Text>
 
-              <Text margin="0 10px">5-minutes</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFiveMinuteSpeedUps')} />
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalMinuteSpeedUps')} 
+              />
 
-              <Text margin="0 10px">15-minutes</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFifteenMinuteSpeedUps')} />
+              <Text 
+              margin="0 10px">
+                5-minutes
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalFiveMinuteSpeedUps')} 
+              />
 
-              <Text margin="0 10px">30-minutes</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalThirtyMinuteSpeedUps')} />
+              <Text 
+              margin="0 10px">
+                15-minutes
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalFifteenMinuteSpeedUps')} 
+              />
 
-              <Text margin="0 10px">60-minutes</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalSixtyMinuteSpeedUps')} />
+              <Text 
+              margin="0 10px">
+                30-minutes
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalThirtyMinuteSpeedUps')} 
+              />
 
-              <Text margin="0 10px">4-hours</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFourHourSpeedUps')} />
+              <Text 
+              margin="0 10px"
+              >60-minutes
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalSixtyMinuteSpeedUps')} 
+              />
 
-              <Text margin="0 10px">8-hours</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalEightHourSpeedUps')} />
+              <Text 
+              margin="0 10px">
+                4-hours
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalFourHourSpeedUps')} 
+              />
 
-              <Text margin="0 10px">15-hours</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalFifteenHourSpeedUps')} />
+              <Text 
+              margin="0 10px">
+                8-hours
+              </Text>
+              <SpeedUpInput type="number" 
+              onChange={updateSpeedUps('totalEightHourSpeedUps')} 
+              />
 
-              <Text margin="0 10px">1-day</Text>
-              <SpeedUpInput type="number" onChange={updateSpeedUps('totalOneDaySpeedUps')} />
+              <Text 
+              margin="0 10px">
+                15-hours
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalFifteenHourSpeedUps')} 
+              />
+
+              <Text 
+              margin="0 10px">
+                1-day
+              </Text>
+              <SpeedUpInput 
+              type="number" 
+              onChange={updateSpeedUps('totalOneDaySpeedUps')} 
+              />
 
               <SubmitButton
               onClick={Submit}
