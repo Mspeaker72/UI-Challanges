@@ -1,12 +1,17 @@
 import { 
-  ContactForm
+  DLSpeedCalc 
+} from "./speedupCalc/speedcalc"
+
+import { 
+  ContactForm 
 } from "./Components/contractForm"
 
 function App() {
 
   return (
 
-    <ContactForm/>
+    <DLSpeedCalc/>
+    // <ContactForm/>
 
   )
 }

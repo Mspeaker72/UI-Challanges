@@ -14,9 +14,15 @@ border-radius: 10px;
 // box shadow on all sides
 flex-direction: column;
 `
-const H1 = styled.h1`
+
+interface HeadingProps {
+  color?:string;
+}
+
+export const H1 = styled.h1<HeadingProps>`
 font-family: Roboto;
 margin:10px;
+color:${props => props.color || 'black'}
 `
 const H2 = styled.h2`
 font-family: Roboto;
@@ -33,11 +39,23 @@ flex-direction: row;
 margin: 0 10px;
 justify-content: start;
 `
-const HContainer = styled.div`
+
+interface HContainerProps {
+  color?:string,
+  height?:string,
+  borderRadius?:string,
+  margin?:string,
+  justifyContent?:string,
+}
+
+export const HContainer = styled.div<HContainerProps>`
 display: flex;
 flex-direction: row;
-margin: 5px 10px;
-justify-content: center;
+margin: ${props => props.margin || '5px 10px'};
+justify-content: ${props => props.justifyContent || 'center'};
+background-color:${props => props.color || 'transparent'};
+height:${props => props.height || 'auto'};
+border-radius:${props => props.borderRadius || '0'}
 `
 
 const HFillContainer = styled.div`
@@ -61,7 +79,7 @@ interface TextProps {
   size?: string;
 }
 
-const Text = styled.text<TextProps>`
+export const Text = styled.text<TextProps>`
 color:${props => props.color || 'black'};
 font-size:${props => props.size || '14px'};
 font-family: Robto;
